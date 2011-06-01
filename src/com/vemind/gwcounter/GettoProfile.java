@@ -33,6 +33,7 @@ public class GettoProfile {
 		ret = "Name: " + name + "\n";
 		ret += "Pulls: " + sData.pulls.toString() + "\n";
 		ret += "Dips: " + sData.dips.toString() + "\n";
+		ret += "Overall: " + sData.getTotalCount().toString();
 		return ret;
 	}
 

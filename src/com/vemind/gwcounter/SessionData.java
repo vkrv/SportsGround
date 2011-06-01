@@ -12,5 +12,9 @@ public class SessionData {
 		dips = 0;
 		started = null;
 	}
+	
+	public Integer getTotalCount() {
+		return dips + pulls;
+	}
 
 }
