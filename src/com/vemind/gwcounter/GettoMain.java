@@ -88,12 +88,14 @@ public class GettoMain extends Activity {
 	public void addDips(View v) {
 		int dips = Integer.decode(dipsEdit.getText().toString());
 		currentProf.add(GettoProfile.DIPS, dips);
+		dipsEdit.setText("");
 		refreshStatus();
 	}
 	
 	public void addPulls(View v) {
 		int pulls = Integer.decode(pullsEdit.getText().toString());
 		currentProf.add(GettoProfile.PULLS, pulls);
+		pullsEdit.setText("");
 		refreshStatus();
 	}
 

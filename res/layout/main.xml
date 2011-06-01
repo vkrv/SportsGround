@@ -7,7 +7,7 @@
 <TextView  android:id="@+id/text_status"
     android:layout_width="fill_parent" 
     android:layout_height="wrap_content" 
-    android:text="@string/hello"
+    android:textSize="32sp"
     />
     <LinearLayout
     	android:layout_width="fill_parent"
@@ -21,12 +21,14 @@
     		android:singleLine="true"
     		android:inputType="numberDecimal"
     		android:hint="@string/dips_desc"
+    		android:textSize="24sp"
     		/>
     	<Button android:id="@+id/dips_button"
     		android:layout_width="wrap_content"
     		android:layout_height="fill_parent"
     		android:gravity="right"
     		android:text="@string/add"
+    		android:textSize="24sp"
     		android:onClick="addDips"/>
     	</LinearLayout>
     <LinearLayout
@@ -41,12 +43,15 @@
     		android:singleLine="true"
     		android:inputType="numberDecimal"
     		android:hint="@string/pulls_desc"
+    		android:textSize="24sp"
     		/>
     	<Button android:id="@+id/pulls_button"
     		android:layout_width="wrap_content"
     		android:layout_height="fill_parent"
     		android:gravity="right"
     		android:text="@string/add"
-    		android:onClick="addPulls"/>
+    		android:onClick="addPulls"
+    		android:textSize="24sp"
+    		/>
     	</LinearLayout>
 </LinearLayout>
