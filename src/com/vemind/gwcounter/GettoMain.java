@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class GettoMain extends Activity {
     private final int PROFILES_ID = Menu.FIRST;
@@ -15,6 +17,7 @@ public class GettoMain extends Activity {
 	private GettoProfile currentProf;
 	private ProfileManager profManager;
 	
+	private TextView textStatus;
 	private EditText dipsEdit;
 	private EditText pullsEdit;
 	private Button dipsButton;
@@ -31,10 +34,17 @@ public class GettoMain extends Activity {
         pullsEdit = (EditText) findViewById (R.id.pulls_edit);
         dipsButton = (Button) findViewById (R.id.dips_button);
         pullsButton = (Button) findViewById (R.id.pulls_button);
+        textStatus = (TextView) findViewById (R.id.text_status);
         
         profManager = ProfileManager.getInstance();
         
         currentProf = profManager.getCurrentProfile();
+    }
+    
+    @Override
+    public void onResume() {
+    	super.onResume();
+    	refreshStatus();
     }
     
     @Override
@@ -75,11 +85,19 @@ public class GettoMain extends Activity {
 		
 	}
 	
-	private void addDips() {
-		
+	public void addDips(View v) {
+		int dips = Integer.decode(dipsEdit.getText().toString());
+		currentProf.add(GettoProfile.DIPS, dips);
+		refreshStatus();
 	}
 	
-	private void addPulls() {
-		
+	public void addPulls(View v) {
+		int pulls = Integer.decode(pullsEdit.getText().toString());
+		currentProf.add(GettoProfile.PULLS, pulls);
+		refreshStatus();
+	}
+
+	private void refreshStatus() {
+		textStatus.setText(currentProf.getTextStatus());
 	}
 }
