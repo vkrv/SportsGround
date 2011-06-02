@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SportsGround extends Activity {
     private final int PROFILES_ID = Menu.FIRST;
@@ -45,6 +46,12 @@ public class SportsGround extends Activity {
     public void onResume() {
     	super.onResume();
     	refreshStatus();
+    }
+    
+    @Override
+    public void onPause() {
+    	super.onResume();
+    	profManager.saveProfile (currentProf);
     }
     
     @Override
@@ -97,10 +104,14 @@ public class SportsGround extends Activity {
 	}
 	
 	public void addPulls(View v) {
-		int pulls = Integer.decode(pullsEdit.getText().toString());
-		currentProf.add(DudeProfile.PULLS, pulls);
-		pullsEdit.setText("");
-		refreshStatus();
+		try { 
+			int pulls = Integer.decode(pullsEdit.getText().toString());
+			currentProf.add(DudeProfile.PULLS, pulls);
+			pullsEdit.setText("");
+			refreshStatus();
+		} catch (NumberFormatException e){
+			Toast.makeText(this, R.string.wrong_data, Toast.LENGTH_LONG);			
+		}
 	}
 
 	private void refreshStatus() {

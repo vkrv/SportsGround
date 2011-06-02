@@ -9,6 +9,7 @@ public class DudeProfile {
 	
 	private Date dateCreated;
 	private String name;
+	private int _id;
 	
 	private SessionData sData;
 	

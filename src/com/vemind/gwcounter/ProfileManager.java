@@ -20,4 +20,9 @@ public class ProfileManager {
 		return ret;
 	}
 
+	public void saveProfile(DudeProfile currentProf) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
