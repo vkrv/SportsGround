@@ -1,18 +1,24 @@
 package com.vemind.sportsground;
 
-import java.util.Date;
 
 public class SessionData {
-	public int id;
+	public long id;
 	public Integer pulls;
 	public Integer dips;
-	public Date started;
+	public Long started; // Date in millis
 	
 	public SessionData (int sId) {
 		id = sId;
 		pulls = 0;
 		dips = 0;
 		started = null;
+	}
+
+	public SessionData (long sId, long sDate, int sDips, int sPulls) {
+		id = sId;
+		pulls = sPulls;
+		dips = sDips;
+		started = sDate;
 	}
 	
 	public Integer getTotalCount() {
