@@ -15,8 +15,8 @@ public class ProfileManager {
 		
 	}
 
-	public GettoProfile getCurrentProfile() {
-		GettoProfile ret = new GettoProfile(); 
+	public DudeProfile getCurrentProfile() {
+		DudeProfile ret = new DudeProfile(); 
 		return ret;
 	}
 

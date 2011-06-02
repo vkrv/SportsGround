@@ -8,13 +8,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class GettoMain extends Activity {
+public class SportsGround extends Activity {
     private final int PROFILES_ID = Menu.FIRST;
 	private final  int SETTINGS_ID = PROFILES_ID + 1;
 	private final int EXIT_ID = SETTINGS_ID + 1;
 	private final int SAVE_ID = EXIT_ID + 1;
 
-	private GettoProfile currentProf;
+	private DudeProfile currentProf;
 	private ProfileManager profManager;
 	
 	private TextView textStatus;
@@ -91,14 +91,14 @@ public class GettoMain extends Activity {
 	
 	public void addDips(View v) {
 		int dips = Integer.decode(dipsEdit.getText().toString());
-		currentProf.add(GettoProfile.DIPS, dips);
+		currentProf.add(DudeProfile.DIPS, dips);
 		dipsEdit.setText("");
 		refreshStatus();
 	}
 	
 	public void addPulls(View v) {
 		int pulls = Integer.decode(pullsEdit.getText().toString());
-		currentProf.add(GettoProfile.PULLS, pulls);
+		currentProf.add(DudeProfile.PULLS, pulls);
 		pullsEdit.setText("");
 		refreshStatus();
 	}

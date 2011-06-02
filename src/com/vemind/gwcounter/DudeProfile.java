@@ -2,7 +2,7 @@ package com.vemind.gwcounter;
 
 import java.util.Date;
 
-public class GettoProfile {
+public class DudeProfile {
 	public final static int PULLS = 0;
 	public final static int DIPS = 1;
 	
@@ -12,7 +12,7 @@ public class GettoProfile {
 	
 	private SessionData sData;
 	
-	public GettoProfile () {
+	public DudeProfile () {
 		name = "Vasya";
 		dateCreated = new Date (System.currentTimeMillis());
 		sData = new SessionData();
