@@ -1,4 +1,6 @@
-package com.vemind.gwcounter;
+package com.vemind.sportsground;
+
+import com.vemind.gwcounter.R;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -57,7 +59,7 @@ public class SportsGround extends Activity {
     @Override
     public void onPause() {
     	super.onResume();
-    	profManager.saveProfile (currentProf);
+    	profManager.save(currentProf);
     }
     
     @Override

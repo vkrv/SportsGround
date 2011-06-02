@@ -1,4 +1,4 @@
-package com.vemind.gwcounter;
+package com.vemind.sportsground;
 
 import java.util.Date;
 
@@ -17,7 +17,10 @@ public class DudeProfile {
 		dudeId = nId;
 		name = nName;
 		dateCreated = nDate;
-		sData = new SessionData();
+	}
+	
+	public void setSession (SessionData session) {
+		sData = session;
 	}
 	
 	public void add (int type, int value) {
@@ -53,6 +56,10 @@ public class DudeProfile {
 	
 	public String getName() {
 		return name;
+	}
+
+	public SessionData getSession() {
+		return sData;
 	}
 
 }

@@ -1,10 +1,12 @@
-package com.vemind.gwcounter;
+package com.vemind.sportsground;
 
 import java.util.Date;
 
 
 public class ProfileManager {
 	private static ProfileManager instance;
+	
+	private SessionManager sManager;
 	
 	public static synchronized ProfileManager getInstance() {
 		if (instance == null) {
@@ -14,16 +16,17 @@ public class ProfileManager {
 	}
 	
 	private ProfileManager () {
-		
+		sManager = SessionManager.getInstance();
 	}
 
 	public DudeProfile getCurrentProfile() {
-		DudeProfile ret = new DudeProfile(1, "Filya", new Date (System.currentTimeMillis())); 
+		DudeProfile ret = new DudeProfile(1, "Filya", new Date (System.currentTimeMillis()));
+		ret.setSession(sManager.getCurrentSession());
 		return ret;
 	}
 
-	public void saveProfile(DudeProfile currentProf) {
-		// TODO Auto-generated method stub
+	public void save(DudeProfile cProf) {
+		sManager.saveSession(cProf.getSession());
 		
 	}
 
