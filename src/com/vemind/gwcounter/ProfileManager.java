@@ -1,5 +1,7 @@
 package com.vemind.gwcounter;
 
+import java.util.Date;
+
 
 public class ProfileManager {
 	private static ProfileManager instance;
@@ -16,7 +18,7 @@ public class ProfileManager {
 	}
 
 	public DudeProfile getCurrentProfile() {
-		DudeProfile ret = new DudeProfile(); 
+		DudeProfile ret = new DudeProfile(1, "Filya", new Date (System.currentTimeMillis())); 
 		return ret;
 	}
 

@@ -9,13 +9,14 @@ public class DudeProfile {
 	
 	private Date dateCreated;
 	private String name;
-	private int _id;
+	private int dudeId;
 	
 	private SessionData sData;
 	
-	public DudeProfile () {
-		name = "Vasya";
-		dateCreated = new Date (System.currentTimeMillis());
+	public DudeProfile (int nId, String nName, Date nDate) {
+		dudeId = nId;
+		name = nName;
+		dateCreated = nDate;
 		sData = new SessionData();
 	}
 	
@@ -36,6 +37,22 @@ public class DudeProfile {
 		ret += "Dips: " + sData.dips.toString() + "\n";
 		ret += "Overall: " + sData.getTotalCount().toString();
 		return ret;
+	}
+	
+	public Integer getPulls() {
+		return sData.pulls;
+	}
+	
+	public Integer getDips() {
+		return sData.dips;
+	}
+	
+	public Integer getTotal() {
+		return sData.getTotalCount();
+	}
+	
+	public String getName() {
+		return name;
 	}
 
 }

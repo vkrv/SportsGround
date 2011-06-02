@@ -18,7 +18,10 @@ public class SportsGround extends Activity {
 	private DudeProfile currentProf;
 	private ProfileManager profManager;
 	
-	private TextView textStatus;
+	private TextView textName;
+	private TextView textDips;
+	private TextView textPulls;
+	private TextView textOverall;
 	private EditText dipsEdit;
 	private EditText pullsEdit;
 //	private Button dipsButton;
@@ -35,7 +38,10 @@ public class SportsGround extends Activity {
         pullsEdit = (EditText) findViewById (R.id.pulls_edit);
 //        dipsButton = (Button) findViewById (R.id.dips_button);
 //        pullsButton = (Button) findViewById (R.id.pulls_button);
-        textStatus = (TextView) findViewById (R.id.text_status);
+        textName = (TextView) findViewById (R.id.name_text);
+        textDips = (TextView) findViewById (R.id.dips_text);
+        textPulls = (TextView) findViewById (R.id.pulls_text);
+        textOverall = (TextView) findViewById (R.id.overall_text);
         
         profManager = ProfileManager.getInstance();
         
@@ -103,8 +109,7 @@ public class SportsGround extends Activity {
 			dipsEdit.setText("");
 			refreshStatus();
 		} catch (NumberFormatException e){
-			Toast toast = Toast.makeText(this, R.string.wrong_data, Toast.LENGTH_SHORT);
-			toast.show();
+			Toast.makeText(this, R.string.wrong_data, Toast.LENGTH_SHORT).show();
 		}
 	}
 	
@@ -115,12 +120,14 @@ public class SportsGround extends Activity {
 			pullsEdit.setText("");
 			refreshStatus();
 		} catch (NumberFormatException e){
-			Toast toast = Toast.makeText(this, R.string.wrong_data, Toast.LENGTH_SHORT);
-			toast.show();
+			Toast.makeText(this, R.string.wrong_data, Toast.LENGTH_SHORT).show();
 		}
 	}
 
 	private void refreshStatus() {
-		textStatus.setText(currentProf.getTextStatus());
+		textName.setText("Name: " + currentProf.getName());
+		textDips.setText("Dips: " + currentProf.getDips().toString());
+		textPulls.setText("Pulls: " + currentProf.getPulls().toString());
+		textOverall.setText("Overall: " + currentProf.getTotal().toString());
 	}
 }
