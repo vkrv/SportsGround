@@ -12,9 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class SportsGround extends Activity {
-    private final int PROFILES_ID = Menu.FIRST;
-	private final  int SETTINGS_ID = PROFILES_ID + 1;
-	private final int EXIT_ID = SETTINGS_ID + 1;
+	private final int PROFILES_ID = Menu.FIRST;
+	private final int SETTINGS_ID = PROFILES_ID + 1;
+    private final int CLEAR_ID = SETTINGS_ID + 1;
+	private final int EXIT_ID = CLEAR_ID + 1;
 	private final int SAVE_ID = EXIT_ID + 1;
 
 	private DudeProfile currentProf;
@@ -47,12 +48,13 @@ public class SportsGround extends Activity {
         
         profManager = ProfileManager.getInstance();
         
-        currentProf = profManager.getCurrentProfile();
     }
     
     @Override
     public void onResume() {
     	super.onResume();
+    	profManager.setContext(this);
+        currentProf = profManager.getCurrentProfile();
     	refreshStatus();
     }
     
@@ -67,6 +69,7 @@ public class SportsGround extends Activity {
     	menu.clear();
         menu.add(0, SAVE_ID, 0, R.string.save_session);
         menu.add(0, PROFILES_ID, 0, R.string.switch_profiles);
+        menu.add(0, CLEAR_ID, 0, R.string.clear);
         menu.add(0, SETTINGS_ID, 0, R.string.settings);
         menu.add(0, EXIT_ID, 0, R.string.exit);
         return super.onPrepareOptionsMenu(menu);
@@ -81,6 +84,9 @@ public class SportsGround extends Activity {
             case SETTINGS_ID:
             	showSettings();
             	return true;
+            case CLEAR_ID:
+            	clearSession();
+            	return true;
             case SAVE_ID:
             	showSettings();
             	return true;
@@ -93,6 +99,11 @@ public class SportsGround extends Activity {
     }
     
     
+
+	private void clearSession() {
+		currentProf.clearSession();
+		refreshStatus();
+	}
 
 	private void showSettings() {
 		// TODO Auto-generated method stub

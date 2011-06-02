@@ -8,10 +8,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class SessionManager {
-	public static final String DATABASE_CREATE = "create table sessions (sid integer primary key autoincrement, sdate integer not null"
+	public static final String DATABASE_CREATE = "create table sessions (sid integer primary key autoincrement, sdate integer not null, "
         + "dips integer not null, pulls integer not null);";
 	public static final String DATABASE_NAME = "sessions_db";
-	public static final int DATABASE_VERSION = 0;
+	public static final int DATABASE_VERSION = 1;
 	private static final String DATABASE_TABLE = "sessions";
 	private static final String KEY_DATE = "sdate";
 	private static final String KEY_DIPS = "dips";
@@ -47,9 +47,12 @@ public class SessionManager {
 			if (cursor.getCount() > 0){
 				cursor.moveToLast();
 				ret = fillData(cursor);
+				currentSId = ret.id;
 			}
 			else {
 				ret = new SessionData(cursor.getCount());
+				long dbgl = addSession(ret);
+				currentSId = ret.id;
 			}
 		}
 		return ret;

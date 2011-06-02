@@ -36,8 +36,8 @@ public class DudeProfile {
 	public CharSequence getTextStatus() {
 		String ret;
 		ret = "Name: " + name + "\n";
-		ret += "Pulls: " + sData.pulls.toString() + "\n";
-		ret += "Dips: " + sData.dips.toString() + "\n";
+		ret += "Pulls: " + sData.pulls + "\n";
+		ret += "Dips: " + sData.dips + "\n";
 		ret += "Overall: " + sData.getTotalCount().toString();
 		return ret;
 	}
@@ -60,6 +60,12 @@ public class DudeProfile {
 
 	public SessionData getSession() {
 		return sData;
+	}
+	
+	public void clearSession() {
+		sData.dips = 0;
+		sData.pulls = 0;
+		sData.started = 0;
 	}
 
 }
