@@ -97,10 +97,15 @@ public class SportsGround extends Activity {
 	}
 	
 	public void addDips(View v) {
-		int dips = Integer.decode(dipsEdit.getText().toString());
-		currentProf.add(DudeProfile.DIPS, dips);
-		dipsEdit.setText("");
-		refreshStatus();
+		try {
+			int dips = Integer.decode(dipsEdit.getText().toString());
+			currentProf.add(DudeProfile.DIPS, dips);
+			dipsEdit.setText("");
+			refreshStatus();
+		} catch (NumberFormatException e){
+			Toast toast = Toast.makeText(this, R.string.wrong_data, Toast.LENGTH_SHORT);
+			toast.show();
+		}
 	}
 	
 	public void addPulls(View v) {
@@ -110,7 +115,8 @@ public class SportsGround extends Activity {
 			pullsEdit.setText("");
 			refreshStatus();
 		} catch (NumberFormatException e){
-			Toast.makeText(this, R.string.wrong_data, Toast.LENGTH_LONG);			
+			Toast toast = Toast.makeText(this, R.string.wrong_data, Toast.LENGTH_SHORT);
+			toast.show();
 		}
 	}
 
