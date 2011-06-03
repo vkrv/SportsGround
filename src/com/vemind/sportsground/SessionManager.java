@@ -1,11 +1,14 @@
 package com.vemind.sportsground;
 
+import com.vemind.gwcounter.R;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 public class SessionManager {
 	public static final String DATABASE_CREATE = "create table sessions (sid integer primary key autoincrement, sdate integer not null, "
@@ -52,6 +55,7 @@ public class SessionManager {
 			else {
 				ret = new SessionData(cursor.getCount());
 				long dbgl = addSession(ret);
+				if (dbgl == -1) Toast.makeText(mCtx, R.string.wrong_data, Toast.LENGTH_SHORT).show();
 				currentSId = ret.id;
 			}
 		}

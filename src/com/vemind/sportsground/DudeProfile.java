@@ -30,6 +30,7 @@ public class DudeProfile {
 			return;
 		case DIPS:
 			sData.dips += value;
+			return;
 		}
 	}
 

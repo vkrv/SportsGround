@@ -3,6 +3,7 @@ package com.vemind.sportsground;
 import com.vemind.gwcounter.R;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,11 +26,9 @@ public class SportsGround extends Activity {
 	private TextView textDips;
 	private TextView textPulls;
 	private TextView textOverall;
-	private EditText dipsEdit;
-	private EditText pullsEdit;
-//	private Button dipsButton;
-//	private Button pullsButton;
+	private EditText valueEdit;
 	
+	private int activeType;
 	
 	/** Called when the activity is first created. */
     @Override
@@ -37,8 +36,7 @@ public class SportsGround extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        dipsEdit = (EditText) findViewById (R.id.dips_edit);
-        pullsEdit = (EditText) findViewById (R.id.pulls_edit);
+        valueEdit = (EditText) findViewById (R.id.add_edit);
 //        dipsButton = (Button) findViewById (R.id.dips_button);
 //        pullsButton = (Button) findViewById (R.id.pulls_button);
         textName = (TextView) findViewById (R.id.name_text);
@@ -56,6 +54,7 @@ public class SportsGround extends Activity {
     	profManager.setContext(this);
         currentProf = profManager.getCurrentProfile();
     	refreshStatus();
+    	activeType = DudeProfile.DIPS;
     }
     
     @Override
@@ -115,26 +114,29 @@ public class SportsGround extends Activity {
 		
 	}
 	
-	public void addDips(View v) {
+	public void addValue(View v) {
 		try {
-			int dips = Integer.decode(dipsEdit.getText().toString());
-			currentProf.add(DudeProfile.DIPS, dips);
-			dipsEdit.setText("");
+			int val = Integer.decode(valueEdit.getText().toString());
+			currentProf.add(activeType, val);
+			valueEdit.setText("");
 			refreshStatus();
 		} catch (NumberFormatException e){
 			Toast.makeText(this, R.string.wrong_data, Toast.LENGTH_SHORT).show();
 		}
 	}
 	
-	public void addPulls(View v) {
-		try { 
-			int pulls = Integer.decode(pullsEdit.getText().toString());
-			currentProf.add(DudeProfile.PULLS, pulls);
-			pullsEdit.setText("");
-			refreshStatus();
-		} catch (NumberFormatException e){
-			Toast.makeText(this, R.string.wrong_data, Toast.LENGTH_SHORT).show();
-		}
+	public void dipsClicked(View v) {
+		textPulls.setBackgroundColor(Color.BLACK);
+		textDips.setBackgroundColor(Color.BLUE);
+		valueEdit.setHint(R.string.dips_desc);
+		activeType = DudeProfile.DIPS;
+	}
+	
+	public void pullsClicked(View v) {
+		textDips.setBackgroundColor(Color.BLACK);
+		textPulls.setBackgroundColor(Color.BLUE);
+		valueEdit.setHint(R.string.pulls_desc);
+		activeType = DudeProfile.PULLS;
 	}
 
 	private void refreshStatus() {
