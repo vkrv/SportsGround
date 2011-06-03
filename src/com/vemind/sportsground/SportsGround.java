@@ -138,6 +138,14 @@ public class SportsGround extends Activity {
 		valueEdit.setHint(R.string.pulls_desc);
 		activeType = DudeProfile.PULLS;
 	}
+	
+	public void incValue(View v) {
+		
+	}
+	
+	public void decValue(View v) {
+		
+	}
 
 	private void refreshStatus() {
 		textName.setText("Name: " + currentProf.getName());
