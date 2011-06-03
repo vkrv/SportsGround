@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Превед</string>
+    <string name="app_name">Спортплощадка</string>
+    <string name="add">Добавить</string>
+    <string name="save_session">Сохранить</string>
+    <string name="wrong_data">Некорректные данные</string>
+    <string name="pulls_desc">кол-во подтягиваний</string>
+    <string name="dips_desc">кол-во отжиманий</string>
+    <string name="switch_profiles">Переключить профиль</string>
+    <string name="settings">Настройки</string>
+    <string name="exit">Выход</string>
+    <string name="clear">Сбросить сессию</string>
+    <string name="decrement"></string>
+    <string name="increment"></string>
+</resources>

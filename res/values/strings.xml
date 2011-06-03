@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, GettoMain!</string>
-    <string name="app_name">Getto Workout</string>
+    <string name="hello">Hello buddy</string>
+    <string name="app_name">Sports Ground</string>
     <string name="add">Add</string>
     <string name="save_session">Save</string>
     <string name="wrong_data">Invalid data</string>
