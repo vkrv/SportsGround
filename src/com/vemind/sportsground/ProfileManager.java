@@ -48,4 +48,9 @@ public class ProfileManager {
 		sManager.saveSession(cProf.getSession());
 		sManager.close();
 	}
+	
+	public SessionData newSession(DudeProfile cProf) {
+		sManager.saveSession(cProf.getSession());
+		return sManager.newSession();
+	}
 }

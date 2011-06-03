@@ -4,6 +4,7 @@
     <string name="app_name">Спортплощадка</string>
     <string name="add">Добавить</string>
     <string name="save_session">Сохранить</string>
+    <string name="new_session">Новая сессия</string>
     <string name="wrong_data">Некорректные данные</string>
     <string name="pulls_desc">кол-во подтягиваний</string>
     <string name="dips_desc">кол-во отжиманий</string>

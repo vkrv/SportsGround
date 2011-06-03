@@ -16,7 +16,8 @@ public class SportsGround extends Activity {
 	private final int PROFILES_ID = Menu.FIRST;
 	private final int SETTINGS_ID = PROFILES_ID + 1;
     private final int CLEAR_ID = SETTINGS_ID + 1;
-	private final int EXIT_ID = CLEAR_ID + 1;
+	private final int NEW_ID = CLEAR_ID + 1;
+	private final int EXIT_ID = NEW_ID + 1;
 	private final int SAVE_ID = EXIT_ID + 1;
 
 	private DudeProfile currentProf;
@@ -70,6 +71,7 @@ public class SportsGround extends Activity {
     public boolean onPrepareOptionsMenu(Menu menu) {
     	menu.clear();
         menu.add(0, SAVE_ID, 0, R.string.save_session);
+        menu.add(0, NEW_ID, 0, R.string.new_session);
         menu.add(0, PROFILES_ID, 0, R.string.switch_profiles);
         menu.add(0, CLEAR_ID, 0, R.string.clear);
         menu.add(0, SETTINGS_ID, 0, R.string.settings);
@@ -92,6 +94,9 @@ public class SportsGround extends Activity {
             case SAVE_ID:
             	showSettings();
             	return true;
+            case NEW_ID:
+            	newSession();
+            	return true;
             case EXIT_ID:
             	this.finish();
                 return true;
@@ -101,6 +106,11 @@ public class SportsGround extends Activity {
     }
     
     
+
+	private void newSession() {
+		currentProf.setSession(profManager.newSession(currentProf));
+		refreshStatus();
+	}
 
 	private void clearSession() {
 		currentProf.clearSession();

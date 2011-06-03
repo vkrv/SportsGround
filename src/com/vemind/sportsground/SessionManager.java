@@ -112,6 +112,13 @@ public class SessionManager {
         mDbHelper.close();
     }
     
+    public SessionData newSession() {
+		Cursor cursor = getAllSessions();
+		SessionData ret =  new SessionData(cursor.getCount());
+		addSession(ret);
+		return ret;
+    }
+    
     public long addSession (SessionData session) {
         ContentValues cv = new ContentValues();
         cv.put(KEY_DATE, session.started);
