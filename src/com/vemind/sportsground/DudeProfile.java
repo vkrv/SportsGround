@@ -44,6 +44,17 @@ public class DudeProfile {
 			return;
 		}
 	}
+	
+	public void decrement (int type) {
+		switch (type) {
+		case DIPS: 
+			sData.dips--;
+			return;
+		case PULLS:
+			sData.pulls--;
+			return;
+		}
+	}
 
 	public CharSequence getTextStatus() {
 		String ret;

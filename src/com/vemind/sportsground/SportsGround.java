@@ -140,11 +140,13 @@ public class SportsGround extends Activity {
 	}
 	
 	public void incValue(View v) {
-		
+		currentProf.increment(activeType);
+		refreshStatus();
 	}
 	
 	public void decValue(View v) {
-		
+		currentProf.decrement(activeType);
+		refreshStatus();
 	}
 
 	private void refreshStatus() {
