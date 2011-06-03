@@ -53,6 +53,7 @@
 		    		android:layout_weight="1"
 		    		android:gravity="left"
 		    		android:onClick="decValue"
+		    		android:layout_margin="10sp"
 		    		android:text="@string/decrement"
 		    		android:background="@drawable/dec_button"/>
 		    	<Button android:id="@+id/inc_button"
@@ -61,6 +62,7 @@
 		    		android:layout_weight="1"
 		    		android:gravity="right"
 		    		android:onClick="incValue"
+		    		android:layout_margin="10sp"
 		    		android:text="@string/increment"
 		    		android:background="@drawable/inc_button"/>
 		    	</LinearLayout>
