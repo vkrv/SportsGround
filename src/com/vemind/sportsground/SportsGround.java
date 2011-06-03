@@ -54,13 +54,16 @@ public class SportsGround extends Activity {
     	profManager.setContext(this);
         currentProf = profManager.getCurrentProfile();
     	refreshStatus();
-    	activeType = DudeProfile.DIPS;
+    	activeType = profManager.getActive();
+    	if (activeType == DudeProfile.DIPS) dipsClicked(textDips);
+    	else if (activeType == DudeProfile.PULLS) pullsClicked(textPulls);
     }
     
     @Override
     public void onPause() {
     	super.onResume();
     	profManager.save(currentProf);
+    	profManager.setActive(activeType);
     }
     
     @Override
