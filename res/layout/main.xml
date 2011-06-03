@@ -56,18 +56,20 @@
     	android:layout_height="wrap_content"
     	android:orientation="horizontal">
     	<Button android:id="@+id/dec_button"
-    		android:layout_width="fill_parent"
+    		android:layout_width="wrap_content"
     		android:layout_height="wrap_content"
     		android:layout_weight="1"
     		android:gravity="left"
     		android:onClick="decValue"
-    		android:text="@string/decrement"/>
+    		android:text="@string/decrement"
+    		android:background="@drawable/dec_button"/>
     	<Button android:id="@+id/inc_button"
-    		android:layout_width="fill_parent"
+    		android:layout_width="wrap_content"
     		android:layout_height="wrap_content"
     		android:layout_weight="1"
     		android:gravity="right"
     		android:onClick="incValue"
-    		android:text="@string/increment"/>
+    		android:text="@string/increment"
+    		android:background="@drawable/inc_button"/>
     	</LinearLayout>
 </LinearLayout>
