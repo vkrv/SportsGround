@@ -11,4 +11,6 @@
     <string name="settings">Settings</string>
     <string name="exit">Exit</string>
     <string name="clear">Clear session</string>
+    <string name="decrement">-</string>
+    <string name="increment">+</string>
 </resources>
