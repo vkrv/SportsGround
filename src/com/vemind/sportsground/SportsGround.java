@@ -1,9 +1,6 @@
 package com.vemind.sportsground;
 
-import com.vemind.gwcounter.R;
-
 import android.app.Activity;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.vemind.gwcounter.R;
 
 public class SportsGround extends Activity {
 	private final int PROFILES_ID = Menu.FIRST;
@@ -23,6 +22,7 @@ public class SportsGround extends Activity {
 	private DudeProfile currentProf;
 	private ProfileManager profManager;
 	private SessionManager sManager;
+	private SessionData sData;
 	
 	private TextView textName;
 	private TextView textDips;
@@ -41,8 +41,6 @@ public class SportsGround extends Activity {
         setContentView(R.layout.main);
         
         valueEdit = (EditText) findViewById (R.id.add_edit);
-//        dipsButton = (Button) findViewById (R.id.dips_button);
-//        pullsButton = (Button) findViewById (R.id.pulls_button);
         textName = (TextView) findViewById (R.id.name_text);
         textDips = (TextView) findViewById (R.id.dips_text);
         textPulls = (TextView) findViewById (R.id.pulls_text);
@@ -62,19 +60,19 @@ public class SportsGround extends Activity {
     	profManager.setContext(this);
 		sManager.openDB(this);
         currentProf = profManager.getCurrentProfile();
-        currentProf.setSession(sManager.getCurrentSession());
-    	activeType = profManager.getActive();
-    	if (activeType == DudeProfile.DIPS) dipsClicked(textDips);
-    	else if (activeType == DudeProfile.PULLS) pullsClicked(textPulls);
+        sData = sManager.getCurrentSession();
+    	activeType = sManager.getActive();
+    	if (activeType == SessionData.DIPS) dipsClicked(textDips);
+    	else if (activeType == SessionData.PULLS) pullsClicked(textPulls);
     	refreshStatus();
     }
     
     @Override
     public void onPause() {
     	super.onResume();
-		sManager.saveSession(currentProf.getSession());
+		sManager.saveSession(sData);
 		sManager.close();
-    	profManager.setActive(activeType);
+		sManager.setActive(activeType);
     }
     
     @Override
@@ -116,7 +114,7 @@ public class SportsGround extends Activity {
     }
     
 	private void clearSession() {
-		currentProf.clearSession();
+		sData.clearSession();
 		refreshStatus();
 	}
 
@@ -126,7 +124,7 @@ public class SportsGround extends Activity {
 	}
 	
 	public SessionData newSession() { //TODO Doesn't work!!!
-		sManager.saveSession(currentProf.getSession());
+		sManager.saveSession(sData);
 		SessionData ret = sManager.newSession();
 		refreshStatus();
 		return ret;
@@ -141,7 +139,7 @@ public class SportsGround extends Activity {
 	public void addValue(View v) {
 		try {
 			int val = Integer.decode(valueEdit.getText().toString());
-			currentProf.add(activeType, val);
+			sData.add(activeType, val);
 			valueEdit.setText("");
 			refreshStatus();
 		} catch (NumberFormatException e){
@@ -155,7 +153,7 @@ public class SportsGround extends Activity {
 		textDips.setBackgroundResource(R.drawable.left_active);
 		valDips.setBackgroundResource(R.drawable.right_active);
 		valueEdit.setHint(R.string.dips_desc);
-		activeType = DudeProfile.DIPS;
+		activeType = SessionData.DIPS;
 	}
 	
 	public void pullsClicked(View v) {
@@ -164,23 +162,23 @@ public class SportsGround extends Activity {
 		textDips.setBackgroundResource(R.drawable.center_left);
 		valDips.setBackgroundResource(R.drawable.center_right);
 		valueEdit.setHint(R.string.pulls_desc);
-		activeType = DudeProfile.PULLS;
+		activeType = SessionData.PULLS;
 	}
 	
 	public void incValue(View v) {
-		currentProf.increment(activeType);
+		sData.increment(activeType);
 		refreshStatus();
 	}
 	
 	public void decValue(View v) {
-		currentProf.decrement(activeType);
+		sData.decrement(activeType);
 		refreshStatus();
 	}
 
 	private void refreshStatus() {
 		textName.setText("Name: " + currentProf.getName());
-		valDips.setText(currentProf.getDips().toString());
-		valPulls.setText(currentProf.getPulls().toString());
-		valTotal.setText(currentProf.getTotal().toString());
+		valDips.setText(sData.getDips().toString());
+		valPulls.setText(sData.getPulls().toString());
+		valTotal.setText(sData.getTotal().toString());
 	}
 }

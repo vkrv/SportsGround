@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Превед</string>
-    <string name="app_name">Спортплощадка</string>
+    <string name="hello">Превед еба</string>
+    <string name="app_name">Sports Ground</string>
     <string name="add">Добавить</string>
     <string name="save_session">Сохранить</string>
     <string name="new_session">Новая сессия</string>
     <string name="wrong_data">Некорректные данные</string>
-    <string name="pulls_desc">кол-во подтягиваний</string>
-    <string name="dips_desc">кол-во отжиманий</string>
+    <string name="pulls_desc">Подтягивания</string>
+    <string name="dips_desc">Отжимания</string>
     <string name="switch_profiles">Переключить профиль</string>
     <string name="settings">Настройки</string>
     <string name="exit">Выход</string>
-    <string name="clear">Сбросить сессию</string>
+    <string name="clear">Очистить</string>
     <string name="decrement"></string>
     <string name="increment"></string>
+    <string name="dips"> Отжимания: </string>
+    <string name="pulls"> Подтягивания: </string>
+    <string name="total"> Всего: </string>
 </resources>

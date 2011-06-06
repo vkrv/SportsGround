@@ -24,6 +24,7 @@ public class SessionManager {
 	private static SessionManager instance;
 	
 	private long currentSId;
+	private int activeType;
 	
 	public static synchronized SessionManager getInstance() {
 		if (instance == null) {
@@ -34,6 +35,7 @@ public class SessionManager {
 	
 	private SessionManager() {
 		currentSId = -1;
+		activeType = SessionData.DIPS;
 	}
 
 	private Context mCtx;
@@ -160,5 +162,12 @@ public class SessionManager {
     public boolean clearAll () {
     	return mDb.delete(DATABASE_TABLE, null, null) > 0;
     }
+
+    public void setActive (int type){
+		activeType = type;
+	}
 	
+	public int getActive () {
+		return activeType;
+	}
 }
