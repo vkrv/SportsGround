@@ -14,32 +14,79 @@
 	    	android:layout_width="wrap_content"
 	    	>
 		    <TextView  android:id="@+id/name_text"
-			    android:layout_width="fill_parent" 
+			    android:layout_width="wrap_content" 
 			    android:layout_height="wrap_content" 
 			    android:textSize="24sp"
-			    android:textColor="#DDDDDD"
+			    android:background="@drawable/top_line"
 			    />
-		    <TextView  android:id="@+id/dips_text"
-			    android:layout_width="fill_parent" 
-			    android:layout_height="wrap_content" 
-			    android:textSize="36sp"
-			    android:clickable="true"
-			    android:onClick="dipsClicked"
-			    />
-		    <TextView  android:id="@+id/pulls_text"
-			    android:layout_width="fill_parent" 
-			    android:layout_height="wrap_content" 
-			    android:textSize="36sp"
-			    android:textColor="#DDDDDD"
-			    android:clickable="true"
-			    android:onClick="pullsClicked"
-			    />
-		    <TextView  android:id="@+id/overall_text"
-			    android:layout_width="fill_parent" 
-			    android:layout_height="wrap_content" 
-			    android:textSize="32sp"
-			    />
-	    	</LinearLayout>
+			<LinearLayout android:orientation="horizontal"
+			  	android:layout_width="fill_parent"
+			   	android:layout_height="wrap_content"
+			   	android:gravity="center">
+			    <TextView  android:id="@+id/dips_text"
+				    android:layout_width="wrap_content" 
+				    android:layout_height="wrap_content"
+				    android:textSize="36sp"
+				    android:clickable="true"
+				    android:onClick="dipsClicked"
+				    android:text="@string/dips"
+				    android:background="@drawable/top_left"
+				    />
+				<TextView  android:id="@+id/dips_val"
+				    android:layout_width="wrap_content" 
+				    android:layout_height="wrap_content" 
+				    android:gravity="center"
+				    android:textSize="36sp"
+				    android:clickable="true"
+				    android:onClick="dipsClicked"
+				    android:background="@drawable/top_right"
+				    />
+			</LinearLayout>
+			<LinearLayout android:orientation="horizontal"
+			   	android:layout_width="fill_parent"
+			   	android:layout_height="wrap_content"
+			   	android:gravity="center">
+			    <TextView  android:id="@+id/pulls_text"
+				    android:layout_width="wrap_content" 
+				    android:layout_height="wrap_content"
+				    android:textSize="36sp"
+				    android:clickable="true"
+				    android:onClick="pullsClicked"
+				    android:text="@string/pulls"
+				    android:background="@drawable/center_left"
+				    />
+			    <TextView  android:id="@+id/pulls_val"
+				    android:layout_width="wrap_content" 
+				    android:layout_height="wrap_content"
+				    android:gravity="center" 
+				    android:textSize="36sp"
+				    android:clickable="true"
+				    android:onClick="pullsClicked"
+				    android:background="@drawable/center_right"
+				    />
+			</LinearLayout>
+			<LinearLayout android:orientation="horizontal"
+			  	android:layout_width="fill_parent"
+			   	android:layout_height="wrap_content"
+			   	android:gravity="center">
+			    <TextView  android:id="@+id/total_text"
+				    android:layout_width="wrap_content" 
+				    android:layout_height="wrap_content"
+				    android:textSize="36sp"
+				    android:clickable="false"
+				    android:text="@string/total"
+				    android:background="@drawable/bottom_left"
+				    />
+				<TextView  android:id="@+id/total_val"
+				    android:layout_width="wrap_content" 
+				    android:layout_height="wrap_content" 
+				    android:gravity="center"
+				    android:textSize="36sp"
+				    android:clickable="false"
+				    android:background="@drawable/bottom_right"
+				    />
+		    </LinearLayout>
+	    </LinearLayout>
 
 		    <LinearLayout
 		    	android:layout_width="fill_parent"

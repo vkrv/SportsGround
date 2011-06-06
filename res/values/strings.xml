@@ -6,8 +6,8 @@
     <string name="save_session">Save</string>
     <string name="new_session">New session</string>
     <string name="wrong_data">Invalid data</string>
-    <string name="pulls_desc">Enter number of pulls</string>
-    <string name="dips_desc">Enter number of dips</string>
+    <string name="pulls_desc">Number of pulls</string>
+    <string name="dips_desc">Number of dips</string>
     <string name="switch_profiles">Switch profile</string>
     <string name="settings">Settings</string>
     <string name="exit">Exit</string>
