@@ -45,7 +45,8 @@ public class TimerManager {
 	}
 	
 	private TimerManager() {
-		
+		mHandler = new Handler();
+		state = STOPPED;
 	}
 	
 	public void bindTextView(TextView tv) {
@@ -53,7 +54,9 @@ public class TimerManager {
 	}
 	
 	public void init() {
-		
+		if (state == STOPPED) {
+			timeLabel.setText("0:00");
+		}
 	}
 	
 	public void start() {
@@ -75,9 +78,14 @@ public class TimerManager {
 	
 	public void stop() {
 		mHandler.removeCallbacks(mUpdateTimeTask);
+		timeLabel.setText("0:00");
 		mStartTime = 0;
 		mTimePaused = 0;
 		mTimeDelay = 0;
 		state = STOPPED;
+	}
+	
+	public int getState() {
+		return state;
 	}
 }
