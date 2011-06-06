@@ -3,10 +3,10 @@ package com.vemind.sportsground;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,13 +35,15 @@ public class SportsGround extends Activity {
 	private TextView valTotal;
 	private TextView timeLabel;
 	private EditText valueEdit;
+	private Button startTimer;
 	
 	private int activeType;
+	private boolean timerPaused;
 	
 	private Runnable mUpdateTimeTask = new Runnable() {
 		   public void run() {
 		       final long start = mStartTime;
-		       long millis = System.currentTimeMillis() - start;
+		       long millis = System.currentTimeMillis() - start - mTimeDelay;
 		       int seconds = (int) (millis / 1000);
 		       int minutes = seconds / 60;
 		       seconds     = seconds % 60;
@@ -56,6 +58,8 @@ public class SportsGround extends Activity {
 		   }
 		};
 	private long mStartTime;
+	private long mTimePaused;
+	private long mTimeDelay;
 	
 	/** Called when the activity is first created. */
     @Override
@@ -71,6 +75,7 @@ public class SportsGround extends Activity {
         valPulls = (TextView) findViewById (R.id.pulls_val);
         valTotal = (TextView) findViewById (R.id.total_val);
         timeLabel = (TextView) findViewById (R.id.time_label);
+        startTimer = (Button) findViewById (R.id.start_timer);
         
         profManager = ProfileManager.getInstance();
 		sManager = SessionManager.getInstance();
@@ -90,6 +95,7 @@ public class SportsGround extends Activity {
     	activeType = sManager.getActive();
     	if (activeType == SessionData.DIPS) dipsClicked(textDips);
     	else if (activeType == SessionData.PULLS) pullsClicked(textPulls);
+    	timeLabel.setText("0:00");
     	refreshStatus();
     }
     
@@ -140,17 +146,29 @@ public class SportsGround extends Activity {
     }
     
     public void startTimer(View v) {
-        if (mStartTime == 0L) {
-        	timeLabel.setText("0:00");
-             mStartTime = System.currentTimeMillis();
+        if (mStartTime == 0L || timerPaused) {
+        	if (!timerPaused) mStartTime = System.currentTimeMillis();
+        	else {
+        		mTimeDelay += System.currentTimeMillis() - mTimePaused;
+        	}
              mHandler.removeCallbacks(mUpdateTimeTask);
-             mHandler.postDelayed(mUpdateTimeTask, 1000);
+             mHandler.postDelayed(mUpdateTimeTask, 100);
+             startTimer.setBackgroundResource(R.drawable.pause_button);
+             timerPaused = false;
+        } else {
+        	startTimer.setBackgroundResource(R.drawable.start_button);
+        	mHandler.removeCallbacks(mUpdateTimeTask);
+        	timerPaused = true;
+        	mTimePaused = System.currentTimeMillis();
         }
     }
     
     public void stopTimer(View v) {
+    	timeLabel.setText("0:00");
         mHandler.removeCallbacks(mUpdateTimeTask);
+        startTimer.setBackgroundResource(R.drawable.start_button);
         mStartTime = 0;
+        timerPaused = false;
     }
     
 	private void clearSession() {
