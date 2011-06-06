@@ -22,7 +22,7 @@ public class ProfileManager {
 	}
 
 	public DudeProfile getCurrentProfile() {
-		DudeProfile ret = new DudeProfile(1, "Filya", new Date (System.currentTimeMillis()));
+		DudeProfile ret = new DudeProfile(1, "Dyadya Filya", new Date (System.currentTimeMillis()));
 		return ret;
 	}
 }

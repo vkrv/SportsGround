@@ -2,6 +2,8 @@ package com.vemind.sportsground;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +25,7 @@ public class SportsGround extends Activity {
 	private ProfileManager profManager;
 	private SessionManager sManager;
 	private SessionData sData;
+	private Handler mHandler;
 	
 	private TextView textName;
 	private TextView textDips;
@@ -30,9 +33,29 @@ public class SportsGround extends Activity {
 	private TextView textPulls;
 	private TextView valPulls;
 	private TextView valTotal;
+	private TextView timeLabel;
 	private EditText valueEdit;
 	
 	private int activeType;
+	
+	private Runnable mUpdateTimeTask = new Runnable() {
+		   public void run() {
+		       final long start = mStartTime;
+		       long millis = System.currentTimeMillis() - start;
+		       int seconds = (int) (millis / 1000);
+		       int minutes = seconds / 60;
+		       seconds     = seconds % 60;
+
+		       if (seconds < 10) {
+		           timeLabel.setText("" + minutes + ":0" + seconds);
+		       } else {
+		           timeLabel.setText("" + minutes + ":" + seconds);            
+		       }
+		     
+		       mHandler.postDelayed(mUpdateTimeTask, 100);
+		   }
+		};
+	private long mStartTime;
 	
 	/** Called when the activity is first created. */
     @Override
@@ -47,9 +70,12 @@ public class SportsGround extends Activity {
         valDips = (TextView) findViewById (R.id.dips_val);
         valPulls = (TextView) findViewById (R.id.pulls_val);
         valTotal = (TextView) findViewById (R.id.total_val);
+        timeLabel = (TextView) findViewById (R.id.time_label);
         
         profManager = ProfileManager.getInstance();
 		sManager = SessionManager.getInstance();
+		mHandler = new Handler();
+		mStartTime = 0l;
 
         
     }
@@ -111,6 +137,20 @@ public class SportsGround extends Activity {
             }
 
         return super.onMenuItemSelected(featureId, item);
+    }
+    
+    public void startTimer(View v) {
+        if (mStartTime == 0L) {
+        	timeLabel.setText("0:00");
+             mStartTime = System.currentTimeMillis();
+             mHandler.removeCallbacks(mUpdateTimeTask);
+             mHandler.postDelayed(mUpdateTimeTask, 1000);
+        }
+    }
+    
+    public void stopTimer(View v) {
+        mHandler.removeCallbacks(mUpdateTimeTask);
+        mStartTime = 0;
     }
     
 	private void clearSession() {

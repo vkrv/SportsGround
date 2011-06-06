@@ -17,4 +17,6 @@
     <string name="dips">Отжимания</string>
     <string name="pulls">Подтягивания</string>
     <string name="total">Всего</string>
+    <string name="start_timer">Старт</string>
+    <string name="stop_timer">Стоп</string>
 </resources>

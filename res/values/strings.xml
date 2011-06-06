@@ -17,4 +17,6 @@
     <string name="dips">Dips</string>
     <string name="pulls">Pulls</string>
     <string name="total">Total</string>
+    <string name="start_timer">Start</string>
+    <string name="stop_timer">Stop</string>
 </resources>
