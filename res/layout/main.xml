@@ -106,6 +106,7 @@
     	<EditText android:id="@+id/add_edit"
     		android:layout_width="wrap_content"
     		android:layout_height="wrap_content"
+    		android:layout_marginTop="2sp"
     		android:gravity="left"
     		android:singleLine="true"
     		android:inputType="numberDecimal"
@@ -114,6 +115,7 @@
     	<Button android:id="@+id/add_button"
     		android:layout_width="wrap_content"
     		android:layout_height="wrap_content"
+    		android:layout_marginTop="2sp"
     		android:gravity="right"
     		android:text="@string/add"
     		android:textSize="18sp"
@@ -134,13 +136,13 @@
     		android:layout_height="wrap_content"
     		android:gravity="left"
     		android:onClick="startTimer"
-    		android:text="@string/start_timer"/>
+    		android:background="@drawable/start_button"/>
     	<Button android:id="@+id/stop_timer"
     		android:layout_width="wrap_content"
     		android:layout_height="wrap_content"
     		android:gravity="right"
     		android:onClick="stopTimer"
-    		android:text="@string/stop_timer"/>
+    		android:background="@drawable/stop_button"/>
     	</LinearLayout>
     <LinearLayout
     	android:layout_width="fill_parent"
