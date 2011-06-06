@@ -50,10 +50,10 @@ public class SessionData {
 	public void decrement (int type) {
 		switch (type) {
 		case DIPS: 
-			dips--;
+			if (dips > 0) dips--;
 			return;
 		case PULLS:
-			pulls--;
+			if (pulls > 0) pulls--;
 			return;
 		}
 	}
