@@ -8,8 +8,6 @@ import android.content.Context;
 public class ProfileManager {
 	private static ProfileManager instance;
 	
-	private SessionManager sManager;
-
 	private Context mCtx;
 	private int activeType;
 	
@@ -21,7 +19,6 @@ public class ProfileManager {
 	}
 	
 	private ProfileManager () {
-		sManager = SessionManager.getInstance();
 		activeType = DudeProfile.DIPS;
 	}
 	
@@ -39,18 +36,6 @@ public class ProfileManager {
 
 	public DudeProfile getCurrentProfile() {
 		DudeProfile ret = new DudeProfile(1, "Filya", new Date (System.currentTimeMillis()));
-		sManager.openDB(mCtx);
-		ret.setSession(sManager.getCurrentSession());
 		return ret;
-	}
-
-	public void save(DudeProfile cProf) {
-		sManager.saveSession(cProf.getSession());
-		sManager.close();
-	}
-	
-	public SessionData newSession(DudeProfile cProf) {
-		sManager.saveSession(cProf.getSession());
-		return sManager.newSession();
 	}
 }
