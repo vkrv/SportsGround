@@ -11,11 +11,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
 public class SessionManager {
-	public static final String DATABASE_CREATE = "create table sessions (sid integer primary key autoincrement, sdate integer not null, "
+	public static final String DATABASE_CREATE = "create table sessions (sid integer primary key autoincrement, "
+		+ "dudeid integer not null, sdate integer not null, "
         + "dips integer not null, pulls integer not null);";
 	public static final String DATABASE_NAME = "sessions_db";
-	public static final int DATABASE_VERSION = 1;
+	public static final int DATABASE_VERSION = 2;
 	private static final String DATABASE_TABLE = "sessions";
+	private static final String KEY_DUDE = "dudeid";
 	private static final String KEY_DATE = "sdate";
 	private static final String KEY_DIPS = "dips";
 	private static final String KEY_PULLS = "pulls";
@@ -96,7 +98,7 @@ public class SessionManager {
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            db.execSQL("DROP TABLE IF EXISTS speeds");
+            db.execSQL("DROP TABLE IF EXISTS sessions");
             onCreate(db);
         }
     }
@@ -123,6 +125,7 @@ public class SessionManager {
     
     public long addSession (SessionData session) {
         ContentValues cv = new ContentValues();
+        cv.put(KEY_DUDE, session.dudeId);
         cv.put(KEY_DATE, session.started);
         cv.put(KEY_DIPS, session.dips);
         cv.put(KEY_PULLS, session.pulls);
@@ -132,6 +135,7 @@ public class SessionManager {
     
     public boolean updateSession (SessionData session) {
         ContentValues cv = new ContentValues();
+        cv.put(KEY_DUDE, session.dudeId);
         cv.put(KEY_DATE, session.started);
         cv.put(KEY_DIPS, session.dips);
         cv.put(KEY_PULLS, session.pulls);
@@ -145,7 +149,7 @@ public class SessionManager {
     
     public Cursor getSession (long rowId) throws SQLException {
         Cursor mCursor =
-            mDb.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,
+            mDb.query(true, DATABASE_TABLE, new String[] {KEY_ROWID, KEY_DUDE,
                     KEY_DATE, KEY_DIPS, KEY_PULLS}, KEY_ROWID + "=" + rowId, null,
                     null, null, null, null);
         if (mCursor != null) {
@@ -155,7 +159,7 @@ public class SessionManager {
     }
     
     public Cursor getAllSessions () {
-        return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_DATE,
+        return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_DUDE, KEY_DATE,
                 KEY_DIPS, KEY_PULLS}, null, null, null, null, null);
     }
     

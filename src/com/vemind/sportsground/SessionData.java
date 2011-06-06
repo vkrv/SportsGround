@@ -9,6 +9,7 @@ public class SessionData {
 	public int pulls;
 	public int dips;
 	public long started; // Date in millis
+	public int dudeId;
 	
 	public SessionData (int sId) {
 		id = sId;

@@ -14,7 +14,7 @@
     <string name="clear">Clear session</string>
     <string name="decrement"></string>
     <string name="increment"></string>
-    <string name="dips"> Dips: </string>
-    <string name="pulls"> Pulls: </string>
-    <string name="total"> Total: </string>
+    <string name="dips">Dips</string>
+    <string name="pulls">Pulls</string>
+    <string name="total">Total</string>
 </resources>
