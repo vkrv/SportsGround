@@ -26,7 +26,6 @@ public class SportsGround extends Activity {
 	private SessionManager sManager;
 	private SessionData sData;
 	private TimerManager tManager;
-	private Handler mHandler;
 	
 	private TextView textName;
 	private TextView textDips;
@@ -74,6 +73,8 @@ public class SportsGround extends Activity {
     	else if (activeType == SessionData.PULLS) pullsClicked(textPulls);
     	tManager.bindTextView(timeLabel);
     	tManager.init();
+    	startTimer.setBackgroundResource((tManager.getState()==TimerManager.STARTED) ? 
+    			R.drawable.pause_button : R.drawable.start_button);
     	refreshStatus();
     }
     
