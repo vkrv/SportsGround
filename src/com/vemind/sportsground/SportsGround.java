@@ -25,6 +25,7 @@ public class SportsGround extends Activity {
 	private ProfileManager profManager;
 	private SessionManager sManager;
 	private SessionData sData;
+	private TimerManager tManager;
 	private Handler mHandler;
 	
 	private TextView textName;
