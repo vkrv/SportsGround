@@ -3,6 +3,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/bg_land"
     >
     <LinearLayout android:orientation="horizontal"
     	android:layout_height="wrap_content"
@@ -10,15 +11,19 @@
     	android:layout_weight="1"
     	>
 	    <LinearLayout android:orientation="vertical"
-	    	android:layout_height="fill_parent"
+	    	android:layout_height="wrap_content"
 	    	android:layout_width="wrap_content"
+	    	android:layout_margin="4sp"
 	    	>
 		    <TextView  android:id="@+id/name_text"
 			    android:layout_width="wrap_content" 
 			    android:layout_height="wrap_content" 
 			    android:textSize="24sp"
-			    android:background="@drawable/top_line"
 			    />
+		    <ImageView android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		    	android:src="@drawable/top_line"
+		    	/>
 			<LinearLayout android:orientation="horizontal"
 			  	android:layout_width="fill_parent"
 			   	android:layout_height="wrap_content"
@@ -26,17 +31,22 @@
 			    <TextView  android:id="@+id/dips_text"
 				    android:layout_width="wrap_content" 
 				    android:layout_height="wrap_content"
-				    android:textSize="36sp"
+				    android:paddingLeft="8sp"
+				    android:textSize="24sp"
+				    android:gravity="center_vertical"
 				    android:clickable="true"
 				    android:onClick="dipsClicked"
 				    android:text="@string/dips"
+				    android:textColor="#EEEEEE"
 				    android:background="@drawable/top_left"
 				    />
 				<TextView  android:id="@+id/dips_val"
 				    android:layout_width="wrap_content" 
 				    android:layout_height="wrap_content" 
 				    android:gravity="center"
-				    android:textSize="36sp"
+				    android:typeface="serif"
+				    android:textColor="#FFFFFF"
+				    android:textSize="24sp"
 				    android:clickable="true"
 				    android:onClick="dipsClicked"
 				    android:background="@drawable/top_right"
@@ -49,17 +59,22 @@
 			    <TextView  android:id="@+id/pulls_text"
 				    android:layout_width="wrap_content" 
 				    android:layout_height="wrap_content"
-				    android:textSize="36sp"
+				    android:paddingLeft="8sp"
+				    android:textSize="24sp"
 				    android:clickable="true"
+				    android:gravity="center_vertical"
 				    android:onClick="pullsClicked"
 				    android:text="@string/pulls"
+				    android:textColor="#EEEEEE"
 				    android:background="@drawable/center_left"
 				    />
 			    <TextView  android:id="@+id/pulls_val"
 				    android:layout_width="wrap_content" 
 				    android:layout_height="wrap_content"
 				    android:gravity="center" 
-				    android:textSize="36sp"
+				    android:typeface="serif"
+				    android:textColor="#FFFFFF"
+				    android:textSize="24sp"
 				    android:clickable="true"
 				    android:onClick="pullsClicked"
 				    android:background="@drawable/center_right"
@@ -72,95 +87,102 @@
 			    <TextView  android:id="@+id/total_text"
 				    android:layout_width="wrap_content" 
 				    android:layout_height="wrap_content"
-				    android:textSize="36sp"
+				    android:paddingLeft="8sp"
+				    android:textSize="24sp"
+				    android:gravity="center_vertical"
 				    android:clickable="false"
 				    android:text="@string/total"
+				    android:textColor="#EEEEEE"
 				    android:background="@drawable/bottom_left"
 				    />
 				<TextView  android:id="@+id/total_val"
 				    android:layout_width="wrap_content" 
 				    android:layout_height="wrap_content" 
 				    android:gravity="center"
-				    android:textSize="36sp"
+				    android:typeface="serif"
+				    android:textColor="#FFFFFF"
+				    android:textSize="24sp"
 				    android:clickable="false"
 				    android:background="@drawable/bottom_right"
 				    />
 		    </LinearLayout>
+		    <LinearLayout
+		    	android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		    	android:orientation="horizontal"
+		    	android:background="@drawable/bottom_line"
+		    	android:gravity="center">
+		    	<EditText android:id="@+id/add_edit"
+		    		android:layout_width="wrap_content"
+		    		android:layout_height="wrap_content"
+		    		android:layout_marginTop="2sp"
+		    		android:gravity="left"
+		    		android:singleLine="true"
+		    		android:inputType="numberDecimal"
+		    		android:textSize="24sp"
+		    		/>
+		    	<Button android:id="@+id/add_button"
+		    		android:layout_width="wrap_content"
+		    		android:layout_height="wrap_content"
+		    		android:layout_marginTop="2sp"
+		    		android:gravity="right"
+		    		android:text="@string/add"
+		    		android:textSize="18sp"
+		    		android:onClick="addValue"/>
+	    	</LinearLayout>
 	    </LinearLayout>
 		    <LinearLayout android:layout_width="wrap_content"
 		    	android:layout_height="wrap_content"
 		    	android:orientation="vertical"
+		    	android:layout_gravity="center"
 		    	android:gravity="center"> 
-			    <LinearLayout
-			    	android:layout_width="fill_parent"
-			    	android:layout_height="fill_parent"
-			    	android:layout_weight="1"
-			    	android:orientation="horizontal"
-			    	android:gravity="center">
-			    	<Button android:id="@+id/dec_button"
-			    		android:layout_width="wrap_content"
-			    		android:layout_height="fill_parent"
-			    		android:layout_weight="1"
-			    		android:gravity="left"
-			    		android:onClick="decValue"
-			    		android:layout_margin="10sp"
-			    		android:text="@string/decrement"
-			    		android:background="@drawable/dec_button"/>
-			    	<Button android:id="@+id/inc_button"
-			    		android:layout_width="wrap_content"
-			    		android:layout_height="fill_parent"
-			    		android:layout_weight="1"
-			    		android:gravity="right"
-			    		android:onClick="incValue"
-			    		android:layout_margin="10sp"
-			    		android:text="@string/increment"
-			    		android:background="@drawable/inc_button"/>
-			    	</LinearLayout>
-	    	    <LinearLayout
-			    	android:layout_width="wrap_content"
-			    	android:layout_height="wrap_content"
-			    	android:orientation="horizontal"
-			    	android:gravity="center"
-			    	android:layout_marginTop="5sp">
-			    	<TextView android:id="@+id/time_label"
-			    		android:layout_width="wrap_content"
-			    		android:layout_height="wrap_content"
-			    		android:textColor="#000000"/>
-			    	<Button android:id="@+id/start_timer"
-			    		android:layout_width="wrap_content"
-			    		android:layout_height="wrap_content"
-			    		android:gravity="left"
-			    		android:onClick="startTimer"
-			    		android:text="@string/start_timer"/>
-			    	<Button android:id="@+id/stop_timer"
-			    		android:layout_width="wrap_content"
-			    		android:layout_height="wrap_content"
-			    		android:gravity="right"
-			    		android:onClick="stopTimer"
-			    		android:text="@string/stop_timer"/>
-			    	</LinearLayout>	
+			        <LinearLayout
+				    	android:layout_width="fill_parent"
+				    	android:layout_height="wrap_content"
+				    	android:orientation="horizontal"
+				    	android:gravity="center"
+				    	android:layout_marginTop="10sp">
+				    	<Button android:id="@+id/dec_button"
+				    		android:layout_width="wrap_content"
+				    		android:layout_height="wrap_content"
+				    		android:gravity="center"
+				    		android:onClick="decValue"
+				    		android:text="@string/decrement"
+				    		android:background="@drawable/dec_button"/>
+				    	<Button android:id="@+id/inc_button"
+				    		android:layout_width="wrap_content"
+				    		android:layout_height="wrap_content"
+				    		android:gravity="center"
+				    		android:onClick="incValue"
+				    		android:text="@string/increment"
+				    		android:background="@drawable/inc_button"/>
+				    	</LinearLayout>
+				    	<LinearLayout
+					    	android:layout_width="wrap_content"
+					    	android:layout_height="wrap_content"
+					    	android:orientation="horizontal"
+					    	android:gravity="center"
+					    	android:layout_marginTop="5sp"
+					    	android:background="@drawable/timer_panel">
+					    	<TextView android:id="@+id/time_label"
+					    		android:layout_width="wrap_content"
+					    		android:layout_height="wrap_content"
+					    		android:layout_marginRight="20sp"
+					    		android:layout_marginLeft="20sp"
+					    		android:textColor="#FFFFFF"/>
+					    	<Button android:id="@+id/start_timer"
+					    		android:layout_width="wrap_content"
+					    		android:layout_height="wrap_content"
+					    		android:gravity="left"
+					    		android:onClick="startTimer"
+					    		android:background="@drawable/start_button"/>
+					    	<Button android:id="@+id/stop_timer"
+					    		android:layout_width="wrap_content"
+					    		android:layout_height="wrap_content"
+					    		android:gravity="right"
+					    		android:onClick="stopTimer"
+					    		android:background="@drawable/stop_button"/>
+				    	</LinearLayout>
 		    	</LinearLayout>
     	</LinearLayout>
-    <LinearLayout
-    	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:orientation="horizontal">
-    	<EditText android:id="@+id/add_edit"
-    		android:layout_width="fill_parent"
-    		android:layout_height="wrap_content"
-    		android:layout_weight="1"
-    		android:gravity="left"
-    		android:singleLine="true"
-    		android:inputType="numberDecimal"
-    		android:textSize="24sp"
-    		/>
-    	<Button android:id="@+id/add_button"
-    		android:layout_width="wrap_content"
-    		android:layout_height="fill_parent"
-    		android:gravity="right"
-    		android:text="@string/add"
-    		android:textSize="24sp"
-    		android:onClick="addValue"/>
-    	</LinearLayout>
-
 </LinearLayout>
