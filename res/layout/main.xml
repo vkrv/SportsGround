@@ -111,6 +111,7 @@
     		android:singleLine="true"
     		android:inputType="numberDecimal"
     		android:textSize="24sp"
+    		android:maxLength="3"
     		/>
     	<Button android:id="@+id/add_button"
     		android:layout_width="wrap_content"
