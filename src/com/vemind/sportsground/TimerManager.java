@@ -1,5 +1,6 @@
 package com.vemind.sportsground;
 
+import android.graphics.Color;
 import android.os.Handler;
 import android.widget.TextView;
 
@@ -17,25 +18,34 @@ public class TimerManager {
 	private long mTimeDelay;
 	private int state;
 	private TextView timeLabel;
+	private String strValue;
 	
 	private Runnable mUpdateTimeTask = new Runnable() {
 		   public void run() {
-		       final long start = mStartTime;
-		       long millis = System.currentTimeMillis() - start - mTimeDelay;
-		       int seconds = (int) (millis / 1000);
-		       int minutes = seconds / 60;
-		       seconds     = seconds % 60;
-		       
-		       if (timeLabel != null) {
-			       if (seconds < 10) {
-			           timeLabel.setText("" + minutes + ":0" + seconds);
-			       } else {
-			           timeLabel.setText("" + minutes + ":" + seconds);            
-			       }
-		       }
+			   timeLabel.setText(getString());
 		       mHandler.postDelayed(mUpdateTimeTask, 100);
 		   }
-		};
+	};
+	
+	public String getString() {
+		if (state == STARTED) {
+		    long millis = System.currentTimeMillis() - mStartTime - mTimeDelay;
+		    int tens = (int) (millis/100);
+		    int seconds = tens / 10;
+		    int minutes = seconds / 60;
+		    seconds = seconds % 60;
+		    tens = tens % 10;
+		      
+		    strValue = "" + minutes;
+		    if (seconds < 10) {
+		    	strValue += ":0" + seconds;
+		    } else {
+		    	strValue += ":" + seconds;
+		    }
+		    strValue += "." + tens;
+		}
+	    return strValue;
+	}
 	
 	public static synchronized TimerManager getInstance() {
 		if (instance == null) {
@@ -47,6 +57,7 @@ public class TimerManager {
 	private TimerManager() {
 		mHandler = new Handler();
 		state = STOPPED;
+		strValue = "0:00.0";
 	}
 	
 	public void bindTextView(TextView tv) {
@@ -54,9 +65,7 @@ public class TimerManager {
 	}
 	
 	public void init() {
-		if (state == STOPPED) {
-			timeLabel.setText("0:00");
-		}
+		timeLabel.setText(strValue);
 	}
 	
 	public void start() {
@@ -67,11 +76,13 @@ public class TimerManager {
         }        	
         mHandler.removeCallbacks(mUpdateTimeTask);
         mHandler.postDelayed(mUpdateTimeTask, 100);
+    	timeLabel.setTextColor(Color.WHITE);
         state = STARTED;
     } 
 	
 	public void pause() {
     	mHandler.removeCallbacks(mUpdateTimeTask);
+    	timeLabel.setTextColor(Color.YELLOW);
     	mTimePaused = System.currentTimeMillis();
     	state = PAUSED;
 	}
