@@ -25,4 +25,8 @@ public class ProfileManager {
 		DudeProfile ret = new DudeProfile(1, "Dyadya Filya", new Date (System.currentTimeMillis()));
 		return ret;
 	}
+	
+	public void saveProfile(DudeProfile profile) {
+		
+	}
 }
